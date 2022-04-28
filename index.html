@@ -1,135 +1,181 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>紹介ページ</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <link href="lib/main.css" rel="stylesheet" />
+  <script src="lib/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var calendarEl = document.getElementById("calendar");
 
-<head>
-    <meta charset="utf-8">
-    <title>紹介ページ </title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        headerToolbar: {
+          left: "prev,next today",
+          center: "title",
+          right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
+        },
+        initialDate: "2020-09-12",
+        navLinks: true, // can click day/week names to navigate views
+        businessHours: true, // display business hours
+        editable: true,
+        selectable: true,
+        events: [
+          {
+            title: "Business Lunch",
+            start: "2020-09-03T13:00:00",
+            constraint: "businessHours",
+          },
+          {
+            title: "Meeting",
+            start: "2020-09-13T11:00:00",
+            constraint: "availableForMeeting", // defined below
+            color: "#257e4a",
+          },
+          {
+            title: "Conference",
+            start: "2020-09-18",
+            end: "2020-09-20",
+          },
+          {
+            title: "Party",
+            start: "2020-09-29T20:00:00",
+          },
 
-<body>
+          // areas where "Meeting" must be dropped
+          {
+            groupId: "availableForMeeting",
+            start: "2020-09-11T10:00:00",
+            end: "2020-09-11T16:00:00",
+            display: "background",
+          },
+          {
+            groupId: "availableForMeeting",
+            start: "2020-09-13T10:00:00",
+            end: "2020-09-13T16:00:00",
+            display: "background",
+          },
 
+          // red areas where no events can be dropped
+          {
+            start: "2020-09-24",
+            end: "2020-09-28",
+            overlap: false,
+            display: "background",
+            color: "#ff9f89",
+          },
+          {
+            start: "2020-09-06",
+            end: "2020-09-08",
+            overlap: false,
+            display: "background",
+            color: "#ff9f89",
+          },
+        ],
+      });
+
+      calendar.render();
+    });
+  </script>
+  <body>
     <div class="header">
-
-        <div class="toggle">
-
-            <span class="nav_toggle" onclick="addClass()">
-                <i></i>
-                <i></i>
-                <i></i>
-            </span>
-        </div>
-        <b>MENU</b>
-        <nav class="nav">
-            <ul class="nav_menu_ul">
-                <li class="nav_menu_li"><a href="#top">top</a></li>
-                <li class="nav_menu_li"><a href="about.html">about</a></li>
-                <li class="nav_menu_li"><a href="#project">project</a></li>
-                <li class="nav_menu_li"><a href="#contact">contact</a></li>
-            </ul>
-        </nav>
-
+      <div class="toggle">
+        <span class="nav_toggle" onclick="addClass()">
+          <i></i>
+          <i></i>
+          <i></i>
+        </span>
+      </div>
+      <b>MENU</b>
+      <nav class="nav">
+        <ul class="nav_menu_ul">
+          <li class="nav_menu_li"><a href="#top">top</a></li>
+          <li class="nav_menu_li"><a href="about.html">about</a></li>
+          <li class="nav_menu_li"><a href="#project">project</a></li>
+          <li class="nav_menu_li"><a href="#contact">contact</a></li>
+        </ul>
+      </nav>
     </div>
     <div class="container">
-  <div class="slide"></div>
-            <div class="leftpic"></div>
-       
-        
-        
-        <div class="main">
-         
-                <div>
-                    <img src="img/IMG_1117 2.JPG" alt="" id="top">
-                </div>
-                <div class="title" id="title">
-                    <h1>住環境デザイン研究室</h1>
+      <div class="slide"></div>
+      <div class="leftpic"></div>
 
-                    <p>住宅・集合住宅から暮らしを通して考える、都市空間デザイン。<br>
-                        建築、土木、オープンスペース、公園、道、人が暮らすための心地よい空間と、<br>
-                        実現させる仕組みの研究を行っています。</p>
-                </div>
-
-                <div class="project" id="project">
-                    <ul>
-                        <li class="li">
-                            <div class="content">
-                                <img src="img/image 2.jpg" alt="">
-                                <h2><strong>南千里駅前広場</strong></h2>
-                                <p>家具設置やワークショップを行います
-                                    報告会の後にはバーでの意見交換会なども予定しております。</p>
-                            </div>
-
-                        </li>
-                        <li class="li">
-                            <div class="content">
-                                <img src="img/image 3.jpg" alt="">
-
-                                <h2><strong>パークカフェ</strong></h2>
-                                <p>コーヒーを屋台を使って提供します。
-                                    楽しみなが公園を知ることができるものとなっております。</p>
-
-                            </div>
-                        </li>
-                        <li class="li">
-                            <div class="content">
-                                <img src="img/image.jpg" alt="">
-
-                                <h2><strong>八木ラボ</strong></h2>
-                                <p>御堂筋の調査を行い、さらに御堂筋がよくなるためにはどうするべきか、
-                                    街の人たちと一緒に話し合いました。</p>
-                            </div>
-
-                        </li>
-                    </ul>
-                </div>
-                <div class="coffie">
-                    <img src="img/コーヒー.jpg" alt="">
-                    <div class="submit">
-
-                        <div class="btn">
-
-
-                            お取り寄せする
-
-                        </div>
-                        <div class="btn">活動を応援する</div>
-                    </div>
-
-
-                </div>
-                <div class="calender">
-                    <!-- <div class="btn">前の月へ</div> -->
-                    <div>
-
-
-                        <div class="btn" onclick="add()">後の月へ</div>
-                    </div>
-
-                    <img src="img/7.png" alt="" id="img">
-
-                </div>
-                <div class="footer" id="contact">
-
-                    <footer>
-                        <ul>
-                            <li>お知らせ</li>
-                            <li>問い合わせ</li>
-                            <li>コンセプト</li>
-                        </ul>
-                    </footer>
-                </div>
-            
+      <div class="main">
+        <div>
+          <img src="img/IMG_1117 2.JPG" alt="" id="top" />
         </div>
+        <div class="title" id="title">
+          <h1>住環境デザイン研究室</h1>
+
+          <p>
+            住宅・集合住宅から暮らしを通して考える、都市空間デザイン。<br />
+            建築、土木、オープンスペース、公園、道、人が暮らすための心地よい空間と、<br />
+            実現させる仕組みの研究を行っています。
+          </p>
+        </div>
+
+        <div class="project" id="project">
+          <ul>
+            <li class="li">
+              <div class="content">
+                <img src="img/image 2.jpg" alt="" />
+                <h2><strong>南千里駅前広場</strong></h2>
+                <p>
+                  家具設置やワークショップを行います
+                  報告会の後にはバーでの意見交換会なども予定しております。
+                </p>
+              </div>
+            </li>
+            <li class="li">
+              <div class="content">
+                <img src="img/image 3.jpg" alt="" />
+
+                <h2><strong>パークカフェ</strong></h2>
+                <p>
+                  コーヒーを屋台を使って提供します。
+                  楽しみなが公園を知ることができるものとなっております。
+                </p>
+              </div>
+            </li>
+            <li class="li">
+              <div class="content">
+                <img src="img/image.jpg" alt="" />
+
+                <h2><strong>八木ラボ</strong></h2>
+                <p>
+                  御堂筋の調査を行い、さらに御堂筋がよくなるためにはどうするべきか、
+                  街の人たちと一緒に話し合いました。
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="coffie">
+          <img src="img/コーヒー.jpg" alt="" />
+          <div class="submit">
+            <div class="btn">
+              お取り寄せする
+            </div>
+            <div class="btn">活動を応援する</div>
+          </div>
+        </div>
+
+        <div id="calendar"></div>
+        <div class="footer" id="contact">
+          <footer>
+            <ul>
+              <li>お知らせ</li>
+              <li>問い合わせ</li>
+              <li>コンセプト</li>
+            </ul>
+          </footer>
+        </div>
+      </div>
     </div>
- 
-
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/main.js"></script>
-
-
-
-</body>
-
+  </body>
 </html>
