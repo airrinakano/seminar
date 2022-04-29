@@ -143,6 +143,7 @@ b {
   background: white;
   z-index: 10000;
   width: 1680px;
+  height: 100%;
 }
 
 .project {
